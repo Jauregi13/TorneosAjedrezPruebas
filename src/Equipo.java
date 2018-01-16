@@ -1,31 +1,21 @@
+import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Equipo {
+public class Equipo implements mostrador{
 	
 	private String nombre_equipo;
-	private Jugador equipo_local;
-	private Jugador equipo_visitante;
 	private Jugador capitan;
-	private Jugador[] jugadores;
+	private ArrayList<Jugador> jugadores;
+	
 
 	
 	
 	
-	public Jugador getEquipo_local() {
-		return equipo_local;
-	}
-	public void setEquipo_local(Jugador equipo_local) {
-		this.equipo_local = equipo_local;
-	}
-	public Jugador getEquipo_visitante() {
-		return equipo_visitante;
-	}
-	public void setEquipo_visitante(Jugador equipo_visitante) {
-		this.equipo_visitante = equipo_visitante;
-	}
-	public Jugador[] getJugadores() {
+	
+	public ArrayList<Jugador> getJugadores() {
 		return jugadores;
 	}
-	public void setJugadores(Jugador[] jugadores) {
+	public void setJugadores(ArrayList<Jugador> jugadores) {
 		this.jugadores = jugadores;
 	}
 	public String getNombre_equipo() {
@@ -39,6 +29,20 @@ public class Equipo {
 	}
 	public void setCapitan(Jugador capitan) {
 		capitan = capitan;
+	}
+	
+	public void mostrar() {
+		System.out.println(this.nombre_equipo);
+		
+		Iterator<Jugador> i = jugadores.iterator();
+		
+		while (i.hasNext()){
+			Jugador jugador1 = i.next();
+			
+			System.out.println("\t" +jugador1.getNombre() + " " + jugador1.getApellidos() + " ("
+					+ jugador1.getElo() + ")");
+		}
+		
 	}
 	
 	

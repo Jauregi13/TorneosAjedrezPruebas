@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class PartidaAjedrez implements mostrador{
 	
@@ -5,8 +6,10 @@ public class PartidaAjedrez implements mostrador{
 	private Jugador blancas;
 	private Jugador negras;
 	private String resultado;
-	private String movimiento_blancas;
-	private String movimiento_negras;
+	private ArrayList movimiento_blancas;
+	private ArrayList movimiento_negras;
+	private Equipo local;
+	private Equipo visitante;
 	
 	
 	
@@ -16,22 +19,22 @@ public class PartidaAjedrez implements mostrador{
 	
 	
 	
-	public String getMovimiento_blancas() {
+	public ArrayList getMovimiento_blancas() {
 		return movimiento_blancas;
 	}
 
 
-	public void setMovimiento_blancas(String movimiento_blancas) {
+	public void setMovimiento_blancas(ArrayList movimiento_blancas) {
 		this.movimiento_blancas = movimiento_blancas;
 	}
 
 
-	public String getMovimiento_negras() {
+	public ArrayList getMovimiento_negras() {
 		return movimiento_negras;
 	}
 
 
-	public void setMovimiento_negras(String movimiento_negras) {
+	public void setMovimiento_negras(ArrayList movimiento_negras) {
 		this.movimiento_negras = movimiento_negras;
 	}
 
