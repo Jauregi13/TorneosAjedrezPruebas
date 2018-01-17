@@ -19,6 +19,27 @@ public class PartidaAjedrez implements mostrador{
 	
 	
 	
+	
+	public Equipo getLocal() {
+		return local;
+	}
+
+
+	public void setLocal(Equipo local) {
+		this.local = local;
+	}
+
+
+	public Equipo getVisitante() {
+		return visitante;
+	}
+
+
+	public void setVisitante(Equipo visitante) {
+		this.visitante = visitante;
+	}
+
+
 	public ArrayList getMovimiento_blancas() {
 		return movimiento_blancas;
 	}
@@ -50,19 +71,19 @@ public class PartidaAjedrez implements mostrador{
 
 	
 
-	public Jugador getJugador1() {
+	public Jugador getBlancas() {
 		return blancas;
 	}
 
-	public void setJugador1(Jugador jugador1) {
+	public void setBlancas(Jugador jugador1) {
 		this.blancas = jugador1;
 	}
 
-	public Jugador getJugador2() {
+	public Jugador getNegras() {
 		return negras;
 	}
 
-	public void setJugador2(Jugador jugador2) {
+	public void setNegras(Jugador jugador2) {
 		this.negras = jugador2;
 	}
 
@@ -75,7 +96,13 @@ public class PartidaAjedrez implements mostrador{
 	}
 
 	public void mostrar(){
-		
+		System.out.println(this.local.getNombre_equipo() + " - " + this.visitante.getNombre_equipo());
+		for (int i = 0; i < this.local.getJugadores().size(); i++) {
+			
+			System.out.println("\t" + this.local.getJugadores().get(i).getNombre() + " - " +
+			this.visitante.getJugadores().get(i).getNombre());
+			
+		}
 	}
 	
 

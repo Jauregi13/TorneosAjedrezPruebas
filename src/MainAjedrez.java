@@ -9,13 +9,16 @@ public class MainAjedrez {
 		Torneo open_donostia = new Torneo("Open Donostia");
 		ArrayList<Equipo> equipos = new ArrayList();
 		ArrayList<Jugador> jugadores = new ArrayList();
+		ArrayList<PartidaAjedrez> partidas = new ArrayList();
+		open_donostia.setPartidas_ajedrez(partidas);
 
 		final int AÑADIR_EQUIPO = 1;
 		final int MOSTRAR_EQUIPOS = 2;
-		final int AÑADIR_JUGADOR = 5;
+		final int AÑADIR_JUGADOR = 6;
 		final int AÑADIR_PARTIDA = 3;
-		final int SALIR = 4;
-		final int SALIR_2 = 6;
+		final int MOSTRAR_PARTIDAS = 4;
+		final int SALIR = 5;
+		final int SALIR_2 = 7;
 		
 		
 		
@@ -25,6 +28,7 @@ public class MainAjedrez {
 			System.out.println(AÑADIR_EQUIPO + ". Añadir un equipo al torneo.");
 			System.out.println(MOSTRAR_EQUIPOS + ". Mostrar todos los equipos apuntados.");
 			System.out.println(AÑADIR_PARTIDA + ". Añadir el emparejamiento de 2 equipos");
+			System.out.println(MOSTRAR_PARTIDAS + ". Mostrar las partidas del open");
 			System.out.println(SALIR + ". Salir del programa");
 			
 			opcion = Integer.parseInt(lector.nextLine());
@@ -36,8 +40,8 @@ public class MainAjedrez {
 				
 				Equipo equipo1 = añadirEquipo(nombre_equipo, equipos);
 				
-				
 				equipo1.setJugadores(jugadores);
+				
 				do{
 					System.out.println("------MENU AÑADIR JUGADORES A " + nombre_equipo + "------");
 					System.out.println(AÑADIR_JUGADOR + ". Añadir jugador al equipo " + nombre_equipo);
@@ -56,7 +60,7 @@ public class MainAjedrez {
 						System.out.println("Escribe el elo FIDE del jugador:");
 						int elo = Integer.parseInt(lector.nextLine());
 						
-						añadirJugador(nombre, apellidos, elo, jugadores);
+						añadirJugador(nombre, apellidos, elo, equipo1);
 						break;
 
 					default:
@@ -82,7 +86,13 @@ public class MainAjedrez {
 				
 				String equipo_visitante = lector.nextLine();
 				
+				añadirEmparejamiento(equipo_local, equipo_visitante, equipos, jugadores, partidas);
+				
 				break;
+			
+			case MOSTRAR_PARTIDAS:
+				
+				mostrarPartidas(partidas);
 				
 			case SALIR:
 
@@ -115,30 +125,53 @@ public class MainAjedrez {
 		}
 	}
 	
-	public static void añadirJugador(String nombre_jugador, String apellidos, int elo, ArrayList<Jugador> jugadores){
+	public static void añadirJugador(String nombre_jugador, String apellidos, int elo, Equipo equipo1){
 		
 		Jugador jugador1 = new Jugador(nombre_jugador, apellidos, elo);
 		
-		if(jugadores.size() == 4){
-			System.out.println("El equipo está completo");
+		if(equipo1.getJugadores().size() == 4){
+			System.out.println("El equipo está completo, no se pueden añadir "
+					+ "más jugadores");
 		}
 		else {
-			jugadores.add(jugador1);
+			equipo1.getJugadores().add(jugador1);
 		}
 		
 	}
 	
 	public static void añadirEmparejamiento(String equipo_local, String equipo_visitante, ArrayList<Equipo> equipos,
-			ArrayList<Jugador> jugadores){
+			ArrayList<Jugador> jugadores, ArrayList<PartidaAjedrez> partidas){
+		
+		PartidaAjedrez partida1 = new PartidaAjedrez();
+		partidas.add(partida1);
 		
 		for (int i = 0; i < equipos.size(); i++) {
 			
 			if(equipo_local.equals(equipos.get(i).getNombre_equipo())){
-				
+				partida1.setLocal(equipos.get(i));
+			}
+			
+			else if(equipo_visitante.equals(equipos.get(i).getNombre_equipo())){
+				partida1.setVisitante(equipos.get(i));
+			}
+			else {
+				System.out.println("Uno de los nombres de equipo no existe o está mal escrito");
 			}
 			
 		}
 		
+		
+	}
+	
+	public static void mostrarPartidas(ArrayList<PartidaAjedrez> partidas){
+		
+		Iterator<PartidaAjedrez> i = partidas.iterator();
+		
+		while(i.hasNext()){
+			
+			PartidaAjedrez partida1 = i.next();
+			partida1.mostrar();
+		}
 		
 	}
 
