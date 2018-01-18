@@ -32,6 +32,8 @@ public class Equipo implements mostrador{
 	}
 	
 	public void mostrar() {
+		EloComparator comparador = new EloComparator();
+		jugadores.sort(comparador);
 		System.out.println(this.nombre_equipo);
 		
 		Iterator<Jugador> i = jugadores.iterator();
