@@ -38,7 +38,9 @@ public class MainAjedrez {
 				System.out.println("El nombre del equipo:");
 				String nombre_equipo = lector.nextLine();
 				
-				Equipo equipo1 = añadirEquipo(nombre_equipo, equipos);
+				Equipo equipo1 = new Equipo();
+				equipo1.setNombre_equipo(nombre_equipo);
+				equipos.add(equipo1);
 				
 				equipo1.setJugadores(jugadores);
 				
@@ -59,8 +61,13 @@ public class MainAjedrez {
 						
 						System.out.println("Escribe el elo FIDE del jugador:");
 						int elo = Integer.parseInt(lector.nextLine());
+						Jugador jugador = new Jugador();
+						jugador.setNombre(nombre);
+						jugador.setApellidos(apellidos);
+						jugador.setElo(elo);
 						
-						añadirJugador(nombre, apellidos, elo, equipo1);
+						equipos.get(equipos.size()-1).addJudagor(jugador);
+						//añadirJugador(nombre, apellidos, elo, equipos, nombre_equipo);
 						break;
 
 					default:
@@ -108,7 +115,7 @@ public class MainAjedrez {
 	}
 	
 	
-	public static Equipo añadirEquipo(String nombre_equipo, ArrayList<Equipo> equipos){
+	public static Equipo anadirEquipo(String nombre_equipo, ArrayList<Equipo> equipos){
 		Equipo equipo1 = new Equipo();
 		equipo1.setNombre_equipo(nombre_equipo);
 		equipos.add(equipo1);
@@ -125,16 +132,22 @@ public class MainAjedrez {
 		}
 	}
 	
-	public static void añadirJugador(String nombre_jugador, String apellidos, int elo, Equipo equipo1){
+	public static void añadirJugador(String nombre_jugador, String apellidos, int elo, ArrayList<Equipo> equipos,
+			String nombre_equipo){
 		
-		Jugador jugador1 = new Jugador(nombre_jugador, apellidos, elo);
 		
-		if(equipo1.getJugadores().size() == 4){
-			System.out.println("El equipo está completo, no se pueden añadir "
-					+ "más jugadores");
-		}
-		else {
-			equipo1.getJugadores().add(jugador1);
+		for (int i = 0; i < equipos.size(); i++) {
+			if(equipos.get(i).getNombre_equipo().equals(nombre_equipo)){
+				if(equipos.get(i).getJugadores().size() == 4){
+					System.out.println("El equipo está completo");
+				}
+				else{
+					Jugador jugador1 = new Jugador(nombre_jugador, apellidos, elo);
+					equipos.get(i).getJugadores().add(jugador1);
+					break;
+				}
+				
+			}
 		}
 		
 	}

@@ -46,6 +46,10 @@ public class Equipo implements mostrador{
 		}
 		
 	}
+	public void addJudagor(Jugador jugador) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

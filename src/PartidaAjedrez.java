@@ -5,7 +5,9 @@ public class PartidaAjedrez implements mostrador{
 	private int num_mesa;
 	private Jugador blancas;
 	private Jugador negras;
-	private String resultado;
+	private int ganar;
+	private int perder;
+	private int tablas;
 	private ArrayList movimiento_blancas;
 	private ArrayList movimiento_negras;
 	private Equipo local;
@@ -18,8 +20,7 @@ public class PartidaAjedrez implements mostrador{
 	}
 	
 	
-	
-	
+		
 	public Equipo getLocal() {
 		return local;
 	}
@@ -59,17 +60,37 @@ public class PartidaAjedrez implements mostrador{
 		this.movimiento_negras = movimiento_negras;
 	}
 
-
-
-	public String getResultado() {
-		return resultado;
-	}
-
-	public void setResultado(String resultado) {
-		this.resultado = resultado;
-	}
-
 	
+
+	public int getGanar() {
+		return ganar;
+	}
+
+
+	public void setGanar(int ganar) {
+		this.ganar = ganar;
+	}
+
+
+	public int getPerder() {
+		return perder;
+	}
+
+
+	public void setPerder(int perder) {
+		this.perder = perder;
+	}
+
+
+	public int getTablas() {
+		return tablas;
+	}
+
+
+	public void setTablas(int tablas) {
+		this.tablas = tablas;
+	}
+
 
 	public Jugador getBlancas() {
 		return blancas;
