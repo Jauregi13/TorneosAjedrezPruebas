@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -8,7 +11,6 @@ public class MainAjedrez {
 		Scanner lector = new Scanner(System.in);
 		Torneo open_donostia = new Torneo("Open Donostia");
 		ArrayList<Equipo> equipos = new ArrayList();
-		ArrayList<Jugador> jugadores = new ArrayList();
 		ArrayList<PartidaAjedrez> partidas = new ArrayList();
 		open_donostia.setPartidas_ajedrez(partidas);
 
@@ -42,6 +44,7 @@ public class MainAjedrez {
 				equipo1.setNombre_equipo(nombre_equipo);
 				equipos.add(equipo1);
 				
+				ArrayList<Jugador> jugadores = new ArrayList();
 				equipo1.setJugadores(jugadores);
 				
 				do{
@@ -66,8 +69,7 @@ public class MainAjedrez {
 						jugador.setApellidos(apellidos);
 						jugador.setElo(elo);
 						
-						equipos.get(equipos.size()-1).addJudagor(jugador);
-						//añadirJugador(nombre, apellidos, elo, equipos, nombre_equipo);
+						anadirJugador(nombre, apellidos, elo, equipos, nombre_equipo);
 						break;
 
 					default:
@@ -93,7 +95,7 @@ public class MainAjedrez {
 				
 				String equipo_visitante = lector.nextLine();
 				
-				añadirEmparejamiento(equipo_local, equipo_visitante, equipos, jugadores, partidas);
+				añadirEmparejamiento(equipo_local, equipo_visitante, equipos, partidas);
 				
 				break;
 			
@@ -101,7 +103,13 @@ public class MainAjedrez {
 				
 				mostrarPartidas(partidas);
 				
+				break;
+				
 			case SALIR:
+				System.out.println("Guardar información en fichero y saliendo del programa...");
+				
+				guardarLista(equipos, partidas);
+				break;
 
 			default:
 				break;
@@ -115,6 +123,27 @@ public class MainAjedrez {
 	}
 	
 	
+	private static void guardarLista(ArrayList<Equipo> equipos, ArrayList<PartidaAjedrez> partidas) {
+		FileWriter fileWriter;
+		Iterator<Equipo> i = equipos.iterator();
+		try {
+			fileWriter = new FileWriter("C:/Users/Jon Jauregi/Documents/Ejercicios eclipse/TorneoAjedrez/src/torneo.txt");
+			PrintWriter printWriter = new PrintWriter(fileWriter);
+			
+			while(i.hasNext()){
+				Equipo equipo = i.next();
+				
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+
 	public static Equipo anadirEquipo(String nombre_equipo, ArrayList<Equipo> equipos){
 		Equipo equipo1 = new Equipo();
 		equipo1.setNombre_equipo(nombre_equipo);
@@ -132,7 +161,7 @@ public class MainAjedrez {
 		}
 	}
 	
-	public static void añadirJugador(String nombre_jugador, String apellidos, int elo, ArrayList<Equipo> equipos,
+	public static void anadirJugador(String nombre_jugador, String apellidos, int elo, ArrayList<Equipo> equipos,
 			String nombre_equipo){
 		
 		
@@ -153,7 +182,7 @@ public class MainAjedrez {
 	}
 	
 	public static void añadirEmparejamiento(String equipo_local, String equipo_visitante, ArrayList<Equipo> equipos,
-			ArrayList<Jugador> jugadores, ArrayList<PartidaAjedrez> partidas){
+			ArrayList<PartidaAjedrez> partidas){
 		
 		PartidaAjedrez partida1 = new PartidaAjedrez();
 		partidas.add(partida1);

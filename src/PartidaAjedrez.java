@@ -5,9 +5,9 @@ public class PartidaAjedrez implements mostrador{
 	private int num_mesa;
 	private Jugador blancas;
 	private Jugador negras;
-	private int ganar;
-	private int perder;
-	private int tablas;
+	private final int ganar = 1;
+	private final int perder = 0;
+	private final double tablas = 0.5;
 	private ArrayList movimiento_blancas;
 	private ArrayList movimiento_negras;
 	private Equipo local;
@@ -66,32 +66,6 @@ public class PartidaAjedrez implements mostrador{
 		return ganar;
 	}
 
-
-	public void setGanar(int ganar) {
-		this.ganar = ganar;
-	}
-
-
-	public int getPerder() {
-		return perder;
-	}
-
-
-	public void setPerder(int perder) {
-		this.perder = perder;
-	}
-
-
-	public int getTablas() {
-		return tablas;
-	}
-
-
-	public void setTablas(int tablas) {
-		this.tablas = tablas;
-	}
-
-
 	public Jugador getBlancas() {
 		return blancas;
 	}
@@ -120,8 +94,11 @@ public class PartidaAjedrez implements mostrador{
 		System.out.println(this.local.getNombre_equipo() + " - " + this.visitante.getNombre_equipo());
 		for (int i = 0; i < this.local.getJugadores().size(); i++) {
 			
-			System.out.println("\t" + this.local.getJugadores().get(i).getNombre() + " - " +
-			this.visitante.getJugadores().get(i).getNombre());
+			System.out.println("\t(" + this.local.getJugadores().get(i).getElo() + ") " + 
+			this.local.getJugadores().get(i).getNombre() +" " + this.local.getJugadores().get(i).getApellidos() + 
+			" - " + this.visitante.getJugadores().get(i).getNombre() + " " 
+			+ this.visitante.getJugadores().get(i).getApellidos() + " (" 
+			+ this.visitante.getJugadores().get(i).getElo() + ")");
 			
 		}
 	}
