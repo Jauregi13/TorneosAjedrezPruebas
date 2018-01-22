@@ -47,6 +47,11 @@ public class Equipo implements mostrador{
 		
 	}
 	
+	public String getInfo(){
+		
+		return this.nombre_equipo;
+
+	}
 	
 	
 

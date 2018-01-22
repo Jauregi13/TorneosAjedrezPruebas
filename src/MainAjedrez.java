@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,8 +9,10 @@ import java.util.Scanner;
 
 public class MainAjedrez {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		Scanner lector = new Scanner(System.in);
+		File fichero = new File("D:/torneoAjedrez.txt");
+		Scanner scan = new Scanner(fichero);
 		Torneo open_donostia = new Torneo("Open Donostia");
 		ArrayList<Equipo> equipos = new ArrayList();
 		ArrayList<PartidaAjedrez> partidas = new ArrayList();
@@ -22,7 +26,21 @@ public class MainAjedrez {
 		final int SALIR = 5;
 		final int SALIR_2 = 7;
 		
-		
+		while(scan.hasNextLine()){
+			String linea = scan.nextLine();
+			Equipo equipo = new Equipo();
+			equipo.setNombre_equipo(linea);
+			ArrayList<Jugador> jugadores = new ArrayList();
+			while(scan.hasNextLine()){
+				String linea2 = scan.nextLine();
+				String[] partes = linea2.split(", ");
+				Jugador jugador = new Jugador();
+				jugador.setNombre(partes[0]);
+				jugador.setApellidos(partes[1]);
+				jugador.setElo(Integer.parseInt(partes[2]));
+				equipo.getJugadores().add(jugador);
+			}
+		}
 		
 		int opcion = 0;
 		do{
@@ -127,16 +145,25 @@ public class MainAjedrez {
 		FileWriter fileWriter;
 		Iterator<Equipo> i = equipos.iterator();
 		try {
-			fileWriter = new FileWriter("C:/Users/Jon Jauregi/Documents/Ejercicios eclipse/TorneoAjedrez/src/torneo.txt");
+			fileWriter = new FileWriter("D:/torneoAjedrez.txt");
 			PrintWriter printWriter = new PrintWriter(fileWriter);
 			
 			while(i.hasNext()){
 				Equipo equipo = i.next();
+				ArrayList<Jugador> jugadores = equipo.getJugadores();
+				printWriter.print(equipo.getInfo() + ": ");
+				Iterator<Jugador> iterador = jugadores.iterator();
 				
+				while(iterador.hasNext()){
+					Jugador jugador = iterador.next();
+					printWriter.print(jugador.getInfo());
+				}
+				printWriter.println("");
 			}
+			
+			fileWriter.close();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

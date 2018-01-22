@@ -70,5 +70,12 @@ public class Jugador{
 	public void setFecha_nacimiento(Date fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
+	
+	
+	
+	public String getInfo(){
+		
+		return this.nombre+", "+this.apellidos+", "+"("+this.elo+")";
+	}
 
 }
