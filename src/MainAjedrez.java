@@ -11,7 +11,7 @@ public class MainAjedrez {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		Scanner lector = new Scanner(System.in);
-		File fichero = new File("D:/torneoAjedrez.txt");
+		File fichero = new File("C:/Users/Jon Jauregi/Documents/Ejercicios eclipse/TorneoAjedrez/torneoAjedrez.txt");
 		Scanner scan = new Scanner(fichero);
 		Torneo open_donostia = new Torneo("Open Donostia");
 		ArrayList<Equipo> equipos = new ArrayList();
@@ -31,6 +31,7 @@ public class MainAjedrez {
 			Equipo equipo = new Equipo();
 			equipo.setNombre_equipo(linea);
 			ArrayList<Jugador> jugadores = new ArrayList();
+			equipo.setJugadores(jugadores);
 			while(scan.hasNextLine()){
 				String linea2 = scan.nextLine();
 				String[] partes = linea2.split(", ");
@@ -145,18 +146,18 @@ public class MainAjedrez {
 		FileWriter fileWriter;
 		Iterator<Equipo> i = equipos.iterator();
 		try {
-			fileWriter = new FileWriter("D:/torneoAjedrez.txt");
+			fileWriter = new FileWriter("C:/Users/Jon Jauregi/Documents/Ejercicios eclipse/TorneoAjedrez/torneoAjedrez.txt");
 			PrintWriter printWriter = new PrintWriter(fileWriter);
 			
 			while(i.hasNext()){
 				Equipo equipo = i.next();
 				ArrayList<Jugador> jugadores = equipo.getJugadores();
-				printWriter.print(equipo.getInfo() + ": ");
+				printWriter.println(equipo.getInfo() + ": ");
 				Iterator<Jugador> iterador = jugadores.iterator();
 				
 				while(iterador.hasNext()){
 					Jugador jugador = iterador.next();
-					printWriter.print(jugador.getInfo());
+					printWriter.println(jugador.getInfo());
 				}
 				printWriter.println("");
 			}

@@ -75,7 +75,7 @@ public class Jugador{
 	
 	public String getInfo(){
 		
-		return this.nombre+", "+this.apellidos+", "+"("+this.elo+")";
+		return this.nombre+", "+this.apellidos+", " +this.elo;
 	}
 
 }
