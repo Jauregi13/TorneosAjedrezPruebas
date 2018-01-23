@@ -20,11 +20,12 @@ public class MainAjedrez {
 
 		final int AÑADIR_EQUIPO = 1;
 		final int MOSTRAR_EQUIPOS = 2;
-		final int AÑADIR_JUGADOR = 6;
+		final int AÑADIR_JUGADOR = 7;
 		final int AÑADIR_PARTIDA = 3;
 		final int MOSTRAR_PARTIDAS = 4;
-		final int SALIR = 5;
-		final int SALIR_2 = 7;
+		final int SALIR = 6;
+		final int SALIR_2 = 8;
+		final int MAYOR_ELO = 5;
 		
 		while(scan.hasNextLine()){
 			String linea = scan.nextLine();
@@ -50,6 +51,7 @@ public class MainAjedrez {
 			System.out.println(MOSTRAR_EQUIPOS + ". Mostrar todos los equipos apuntados.");
 			System.out.println(AÑADIR_PARTIDA + ". Añadir el emparejamiento de 2 equipos");
 			System.out.println(MOSTRAR_PARTIDAS + ". Mostrar las partidas del open");
+			System.out.println(MAYOR_ELO + ". Mostrar el jugador de cada equipo de mayor elo");
 			System.out.println(SALIR + ". Salir del programa");
 			
 			opcion = Integer.parseInt(lector.nextLine());
@@ -123,6 +125,12 @@ public class MainAjedrez {
 				mostrarPartidas(partidas);
 				
 				break;
+			
+			case MAYOR_ELO:
+				
+				mayorElo(equipos);
+				
+				break;
 				
 			case SALIR:
 				System.out.println("Guardar información en fichero y saliendo del programa...");
@@ -142,6 +150,26 @@ public class MainAjedrez {
 	}
 	
 	
+	private static Jugador mayorElo(ArrayList<Equipo> equipos) {
+		Iterator i = equipos.iterator();
+		Jugador jugMaxElo = ;
+		while(i.hasNext()){
+			Equipo equipo = (Equipo)i.next();
+			ArrayList<Jugador> jugadores = equipo.getJugadores();
+			Iterator iterador = jugadores.iterator();
+			jugMaxElo = equipo.getJugadores().get(0);
+			while(iterador.hasNext()){
+				Jugador jugador = (Jugador)iterador.next();
+				if(jugador.getElo() > jugMaxElo.getElo()){
+					jugador = jugMaxElo;
+				}
+			}
+			
+		}
+		return jugMaxElo;
+	}
+
+
 	private static void guardarLista(ArrayList<Equipo> equipos, ArrayList<PartidaAjedrez> partidas) {
 		FileWriter fileWriter;
 		Iterator<Equipo> i = equipos.iterator();
