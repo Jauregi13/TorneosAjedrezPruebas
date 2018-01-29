@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 public class Jugador{
 	
@@ -77,5 +79,7 @@ public class Jugador{
 		
 		return this.nombre+", "+this.apellidos+", " +this.elo;
 	}
+	
+	
 
 }

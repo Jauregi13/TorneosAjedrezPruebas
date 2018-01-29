@@ -130,8 +130,19 @@ public class MainAjedrez {
 				break;
 
 			case MAYOR_ELO:
+				
+				System.out.println("Introduce el nombre del equipo que desea saber el jugador con mayor elo:");
+				
+				String nombre = scan.nextLine();
+				Iterator<Equipo> i = equipos.iterator();
+				while(i.hasNext()){
+					Equipo equipo = i.next();
+					if(equipo.getNombre_equipo().equals(nombre)){
+						equipo.mayorElo(nombre);
+					}
+				}
+				
 
-				mayorElo(equipos);
 
 				break;
 
@@ -147,24 +158,6 @@ public class MainAjedrez {
 
 		} while (opcion != SALIR);
 
-	}
-
-	private static Jugador mayorElo(ArrayList<Equipo> equipos) {
-		Iterator i = equipos.iterator();
-		Jugador jugMaxElo = equipos.get(0).getJugadores().get(0);
-		while (i.hasNext()) {
-			Equipo equipo = (Equipo) i.next();
-			ArrayList<Jugador> jugadores = equipo.getJugadores();
-			Iterator iterador = jugadores.iterator();
-			while (iterador.hasNext()) {
-				Jugador jugador = (Jugador) iterador.next();
-				if (jugador.getElo() > jugMaxElo.getElo()) {
-					jugMaxElo = jugador;
-				}
-			}
-
-		}
-		return jugMaxElo;
 	}
 
 	private static void guardarLista(ArrayList<Equipo> equipos, ArrayList<PartidaAjedrez> partidas) {

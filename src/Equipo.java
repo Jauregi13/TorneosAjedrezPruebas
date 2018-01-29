@@ -53,6 +53,19 @@ public class Equipo implements mostrador{
 
 	}
 	
+	public Jugador mayorElo(String nombre_equipo) {
+		Jugador jugMaxElo = getJugadores().get(0);
+			ArrayList<Jugador> jugadores = getJugadores();
+			Iterator iterador = jugadores.iterator();
+			while (iterador.hasNext()) {
+				Jugador jugador = (Jugador) iterador.next();
+				if (jugador.getElo() > jugMaxElo.getElo()) {
+					jugMaxElo = jugador;
+				}
+			}
+		return jugMaxElo;
+	}
+	
 	
 
 }
