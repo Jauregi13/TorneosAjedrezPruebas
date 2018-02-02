@@ -11,7 +11,7 @@ public class MainAjedrez {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		Scanner lector = new Scanner(System.in);
-		File fichero = new File("C:/Users/Jon Jauregi/Documents/Ejercicios eclipse/TorneoAjedrez/torneoAjedrez.txt");
+		File fichero = new File("D:/torneoAjedrez.txt");
 		Scanner scan = new Scanner(fichero);
 		Torneo open_donostia = new Torneo("Open Donostia");
 		ArrayList<Equipo> equipos = new ArrayList();
@@ -133,7 +133,7 @@ public class MainAjedrez {
 				
 				System.out.println("Introduce el nombre del equipo que desea saber el jugador con mayor elo:");
 				
-				String nombre = scan.nextLine();
+				String nombre = lector.nextLine();
 				Iterator<Equipo> i = equipos.iterator();
 				while(i.hasNext()){
 					Equipo equipo = i.next();

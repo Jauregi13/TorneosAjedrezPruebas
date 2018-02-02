@@ -2,15 +2,18 @@
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import org.junit.Test;
 
 public class Pruebas {
-
+	Scanner lector = new Scanner(System.in);
 	@Test
 	public void testMayorElo() {
 		try{
 			// Crear el objeto de equipo añadiendole el nombre
+			System.out.println("Escribe el nombre del equipo:");
+			
 			Equipo gros = new Equipo();
 			gros.setNombre_equipo("Gros Xake Taldea");
 			
@@ -42,7 +45,7 @@ public class Pruebas {
 			
 			gros.mayorElo();
 		}
-		catch(BRException e){
+		catch(NullPointerException e){
 			fail("Excepción no esperada");
 			
 		}

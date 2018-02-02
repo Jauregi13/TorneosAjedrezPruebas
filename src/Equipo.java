@@ -53,7 +53,7 @@ public class Equipo implements mostrador{
 
 	}
 	
-	public Jugador mayorElo() {
+	public Jugador mayorElo(String nombre) {
 		Jugador jugMaxElo = getJugadores().get(0);
 			ArrayList<Jugador> jugadores = getJugadores();
 			Iterator iterador = jugadores.iterator();
