@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import Excepciones.EloNegativo;
+import Excepciones.Excepcion;
+
 public class Equipo implements mostrador{
 	
 	private String nombre_equipo;
@@ -53,19 +56,40 @@ public class Equipo implements mostrador{
 
 	}
 	
-	public Jugador mayorElo(String nombre) {
-		Jugador jugMaxElo = getJugadores().get(0);
+	public int mayorElo() throws NullPointerException {
+			Jugador jugMaxElo = getJugadores().get(0);
 			ArrayList<Jugador> jugadores = getJugadores();
-			Iterator iterador = jugadores.iterator();
+			Iterator<Jugador> iterador = jugadores.iterator();
 			while (iterador.hasNext()) {
-				Jugador jugador = (Jugador) iterador.next();
+				Jugador jugador = iterador.next();
+				if(jugador.getElo() == 0){
+					throw new NullPointerException("El elo tiene que tener un valor");
+				}
 				if (jugador.getElo() > jugMaxElo.getElo()) {
 					jugMaxElo = jugador;
 				}
 			}
-		return jugMaxElo;
-	}
+		return jugMaxElo.getElo();
+		}
 	
+	public double mediaElo() throws Excepcion, EloNegativo{
+		Iterator<Jugador> i = this.jugadores.iterator();
+		double media_elo = 0;
+		int suma_elo = 0;
+		while(i.hasNext()){
+			Jugador jugador = i.next();
+			if(jugador.getElo() < 0){
+				throw new Excepcion("El elo nunca puede ser negativo");
+			}
+			suma_elo = suma_elo + jugador.getElo();
+		}
+		media_elo = (double)suma_elo / this.jugadores.size();
+		
+		if(media_elo > 2000){
+			throw new Excepcion("La media del elo es superior a la esperada");
+		}
+		return media_elo;
+	}	
 	
 
 }
