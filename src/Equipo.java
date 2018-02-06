@@ -89,7 +89,7 @@ public class Equipo implements mostrador{
 			throw new Excepcion("La media del elo es superior a la esperada");
 		}
 		return media_elo;
-	}	
+	}
 	
 
 }

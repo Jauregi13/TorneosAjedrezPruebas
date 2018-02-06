@@ -103,5 +103,13 @@ public class PartidaAjedrez implements mostrador{
 		}
 	}
 	
+	
+	public Equipo[] añadirEmparejamiento(Equipo local, Equipo visitante) throws NullPointerException{
+		
+		Equipo[] partida =  new Equipo[2];
+
+		return null;
+	}
+	
 
 }

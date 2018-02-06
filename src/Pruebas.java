@@ -10,10 +10,6 @@ import Excepciones.EloNegativo;
 import Excepciones.Excepcion;
 
 public class Pruebas {
-	public static void main(String[] args){
-		
-		
-	}
 	
 	@Test
 	public void testMayorElo() {
@@ -91,6 +87,20 @@ public class Pruebas {
 			// SALTARA LA EXCEPCION CUANDO LA MEDIA SEA MAYOR DE 2000
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	@Test
+	public void testPartida(){
+		// Equipo gros creado y añadida la lista de jugadores
+		Equipo gros = new Equipo();
+		ArrayList<Jugador> jugadores_gros = new ArrayList();
+		gros.setJugadores(jugadores_gros);
+		
+		// Equipo fortuna creado y añadida la lista de jugadores
+		Equipo fortuna = new Equipo();
+		ArrayList<Jugador> jugadores_fortuna = new ArrayList();
+		fortuna.setJugadores(jugadores_fortuna);
+		
 	}
 
 }
