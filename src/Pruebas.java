@@ -101,6 +101,13 @@ public class Pruebas {
 		ArrayList<Jugador> jugadores_fortuna = new ArrayList();
 		fortuna.setJugadores(jugadores_fortuna);
 		
+		PartidaAjedrez partida = new PartidaAjedrez();
+		try{
+			partida.anadirEmparejamiento(gros, null);
+		}
+		catch(NullPointerException e){
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

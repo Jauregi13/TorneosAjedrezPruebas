@@ -79,7 +79,7 @@ public class Equipo implements mostrador{
 		while(i.hasNext()){
 			Jugador jugador = i.next();
 			if(jugador.getElo() < 0){
-				throw new Excepcion("El elo nunca puede ser negativo");
+				throw new EloNegativo("El elo nunca puede ser negativo");
 			}
 			suma_elo = suma_elo + jugador.getElo();
 		}

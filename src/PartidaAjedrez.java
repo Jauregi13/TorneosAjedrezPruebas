@@ -104,11 +104,19 @@ public class PartidaAjedrez implements mostrador{
 	}
 	
 	
-	public Equipo[] añadirEmparejamiento(Equipo local, Equipo visitante) throws NullPointerException{
+	public Equipo[] anadirEmparejamiento(Equipo local, Equipo visitante) throws NullPointerException{
 		
 		Equipo[] partida =  new Equipo[2];
-
-		return null;
+		
+		partida[0] = local;
+		partida[1] = visitante;
+		
+		if(local != null && visitante != null){
+			return partida;
+		}
+		else{
+			throw new NullPointerException("No puede estar algun equipo vacío");
+		}
 	}
 	
 
