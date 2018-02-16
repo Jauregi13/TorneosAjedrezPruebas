@@ -107,6 +107,7 @@ public class Pruebas {
 		}
 		catch(NullPointerException e){
 			System.out.println(e.getMessage());
+			fail("Se esperaba excepcion NullPointerException");
 		}
 	}
 
